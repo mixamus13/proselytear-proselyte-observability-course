@@ -6,6 +6,7 @@ import net.proselyte.eventconsumer.repository.EventRepository;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -22,15 +23,24 @@ public class EventListener {
 
     @KafkaListener(topics = "events", groupId = "event-group")
     public void listen(Event event) {
-        log.info("Received event: {}", event);
+        try {
+            // Добавляем поля в MDC для структурированных логов
+            MDC.put("uid", event.getUid());
+            MDC.put("subject", event.getSubject());
+            MDC.put("description", event.getDescription());
 
-        EventEntity entity = new EventEntity();
-        entity.setUid(event.getUid());
-        entity.setSubject(event.getSubject());
-        entity.setDescription(event.getDescription());
+            log.info("Received event");
 
-        repository.save(entity);
+            EventEntity entity = new EventEntity();
+            entity.setUid(event.getUid());
+            entity.setSubject(event.getSubject());
+            entity.setDescription(event.getDescription());
 
-        log.info("Saved entity: {}", entity);
+            repository.save(entity);
+
+            log.info("Saved entity");
+        } finally {
+            MDC.clear(); // Важно очищать MDC после логирования
+        }
     }
 }

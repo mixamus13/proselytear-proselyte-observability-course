@@ -1,0 +1,25 @@
+server:
+  port: 8092
+
+spring:
+  application:
+    name: event-public-api
+
+management:
+  server:
+    port: 8092
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    prometheus:
+      enabled: true
+
+
+event-consumer:
+  url: http://event-consumer:8081

@@ -24,6 +24,9 @@ dependencies {
 
     implementation"org.springframework.kafka:spring-kafka:$springKafkaVersion"
     implementation "io.confluent:kafka-avro-serializer:$kafkaAvroSerializerVersion"
+
+    implementation "net.logstash.logback:logstash-logback-encoder:$logstashVersion"
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

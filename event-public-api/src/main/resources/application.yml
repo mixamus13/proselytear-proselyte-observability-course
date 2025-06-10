@@ -20,6 +20,13 @@ management:
     prometheus:
       enabled: true
 
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+    otlp:
+      endpoint: http://alloy:4318
+      protocol: http/protobuf
 
 event-consumer:
-  url: http://event-consumer:8081
+  url: http://event-consumer:8091

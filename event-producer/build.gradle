@@ -27,6 +27,9 @@ dependencies {
 
     implementation "net.logstash.logback:logstash-logback-encoder:$logstashVersion"
 
+    implementation "io.opentelemetry:opentelemetry-exporter-otlp"
+    implementation "io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter:$opentelemetrySpringBootVersion"
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

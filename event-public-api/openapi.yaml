@@ -1,0 +1,42 @@
+openapi: 3.0.3
+info:
+  title: Event Public API
+  version: 1.0.0
+  description: |
+    Gateway для получения событий по UID. Проксирует запросы в event-consumer, возвращает trace-id.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/v1/events/{uid}:
+    get:
+      summary: Получить событие по UID
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: Уникальный идентификатор события
+      responses:
+        '200':
+          description: Найдено событие
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '404':
+          description: Событие не найдено
+components:
+  schemas:
+    Event:
+      type: object
+      properties:
+        uid:
+          type: string
+        subject:
+          type: string
+        description:
+          type: string
+        traceId:
+          type: string
+      required: [uid, subject, description, traceId]

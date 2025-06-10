@@ -1,0 +1,40 @@
+openapi: 3.0.3
+info:
+  title: Event Consumer API
+  version: 1.0.0
+  description: |
+    Внутренний API для получения события по UID из БД.
+servers:
+  - url: http://localhost:8082
+paths:
+  /internal/api/v1/events/{uid}:
+    get:
+      summary: Получить событие по UID
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          schema:
+            type: string
+          description: Уникальный идентификатор события
+      responses:
+        '200':
+          description: Найдено событие
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventEntity'
+        '404':
+          description: Событие не найдено
+components:
+  schemas:
+    EventEntity:
+      type: object
+      properties:
+        uid:
+          type: string
+        subject:
+          type: string
+        description:
+          type: string
+      required: [uid, subject, description]

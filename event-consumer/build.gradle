@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' version "$springBootVersion"
     id 'io.spring.dependency-management' version "$springDependencyManagementVersion"
     id "com.github.davidmc24.gradle.plugin.avro" version "$avroPluginVersion"
+
 }
 group = "net.proselyte"
 version = "$appVersion"
@@ -15,16 +16,16 @@ repositories {
     }
 }
 
-
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter"
     implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "io.micrometer:micrometer-registry-prometheus"
 
     implementation"org.springframework.kafka:spring-kafka:$springKafkaVersion"
     implementation "io.confluent:kafka-avro-serializer:$kafkaAvroSerializerVersion"
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation "org.postgresql:postgresql"
 }
 
 avro {

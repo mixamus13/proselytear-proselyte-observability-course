@@ -257,6 +257,27 @@ services:
     networks:
       - observability-net
 
+  event-consumer:
+    image: event-consumer:latest
+    container_name: event-consumer
+    ports:
+      - "8091:8091"
+    build:
+      context: ./event-consumer
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      postgres:
+        condition: service_healthy
+      schema-registry:
+        condition: service_healthy
+      kafka1:
+        condition: service_healthy
+      event-producer:
+        condition: service_started
+    networks:
+      - observability-net
+
 networks:
   observability-net:
     driver: bridge

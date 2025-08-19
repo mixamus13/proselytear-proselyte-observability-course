@@ -133,3 +133,8 @@ proselyte-observability-course/
 [Eugene Suleimanov](https://github.com/proselytear)
 [Software Engineering Telegram](https://t.me/esuleimanov)
 
+## GitHub
+https://github.com/mixamus13/proselytear-proselyte-observability-course
+
+## YouTube
+https://www.youtube.com/watch?v=PqU1FL-OfPo

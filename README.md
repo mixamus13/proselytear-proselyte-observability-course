@@ -128,10 +128,6 @@ proselyte-observability-course/
 * Tempo / Alloy (tracing)
 * Docker / Docker Compose
 * MinIO
-* 
-## Автор
-[Eugene Suleimanov](https://github.com/proselytear)
-[Software Engineering Telegram](https://t.me/esuleimanov)
 
 ## GitHub
 https://github.com/mixamus13/proselytear-proselyte-observability-course
